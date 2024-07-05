@@ -1,6 +1,7 @@
 import textacy
 from textacy import extract
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+import numpy as np
 
 class KeytermExtractor:
     """
@@ -18,6 +19,7 @@ class KeytermExtractor:
         self.raw_text = raw_text
         self.text_doc = textacy.make_spacy_doc(self.raw_text, lang="en_core_web_md")
         self.top_n_values = top_n_values
+
 
     def get_keyterms_based_on_textrank(self):
         """
