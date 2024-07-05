@@ -5,6 +5,10 @@ from resume_matcher.scripts.get_score import get_score
 from resume_matcher.scripts.logger import init_logging_config
 from resume_matcher.scripts.utils import find_path, read_json
 
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 init_logging_config()
 
 run_first()

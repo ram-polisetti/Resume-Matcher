@@ -138,10 +138,21 @@ def generate_unique_id():
     return str(uuid4())
 
 
+
+
+
 def get_filenames_from_dir(directory_path: str) -> list:
-    filenames = [
-        f
-        for f in os.listdir(directory_path)
-        if os.path.isfile(os.path.join(directory_path, f)) and f != ".DS_Store"
-    ]
+    logging.info(f"Searching for files in: {directory_path}")
+    filenames = []
+    try:
+        for f in os.listdir(directory_path):
+            full_path = os.path.join(directory_path, f)
+            if os.path.isfile(full_path) and f.lower().endswith('.pdf'):
+                logging.info(f"Found PDF file: {f}")
+                filenames.append(f)
+            else:
+                logging.info(f"Skipping non-PDF file or directory: {f}")
+    except Exception as e:
+        logging.error(f"Error reading directory {directory_path}: {str(e)}")
+    logging.info(f"Total PDF files found: {len(filenames)}")
     return filenames
